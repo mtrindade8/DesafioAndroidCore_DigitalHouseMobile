@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_food_detail.view.*
+import kotlinx.android.synthetic.main.fragment_restaurant_detail.view.*
 
 
 private const val ARG_PARAM1 = "nome"
@@ -30,8 +32,13 @@ class FoodDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        var view = inflater.inflate(R.layout.fragment_food_detail, container, false)
 
-        return inflater.inflate(R.layout.fragment_food_detail, container, false)
+        imagem?.let { view.img_food_fragment.setImageResource(it) }
+        view.txt_food_nome.text = nome
+        view.txt_food_descricao.text = descricao
+
+        return view
     }
 
     companion object {
@@ -42,7 +49,7 @@ class FoodDetailFragment : Fragment() {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
-                    putInt(ARG_PARAM2, param3)
+                    putInt(ARG_PARAM3, param3)
                 }
             }
     }

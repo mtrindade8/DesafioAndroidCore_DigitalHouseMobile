@@ -41,14 +41,11 @@ class RestaurantDetailFragment : Fragment(), FoodAdapter.OnFoodItemClickListener
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view =  inflater.inflate(R.layout.fragment_restaurant_detail, container, false)
+        val view = inflater.inflate(R.layout.fragment_restaurant_detail, container, false)
 
         imagem?.let { view.img_restaurante_fragment.setImageResource(it) }
         view.txt_restaurante_fragment.text = nome
 
-        view.btn_voltar.setOnClickListener {
-            activity?.finish();
-        }
 
         var recyclerView = view.findViewById<RecyclerView>(R.id.rcv_food_fragment)
         recyclerView.adapter = adapter
@@ -84,7 +81,6 @@ class RestaurantDetailFragment : Fragment(), FoodAdapter.OnFoodItemClickListener
     )
 
     override fun OnClickFood(position: Int) {
-        Toast.makeText(activity, "CLICK", Toast.LENGTH_SHORT).show()
-    }
-
+            (activity as RestaurantActivity?)!!.replaceFragment(listaFood[position])
+        }
 }
